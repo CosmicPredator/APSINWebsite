@@ -998,7 +998,7 @@ a[href*='tel'], a[href*='mailto'] {
 }
 
 .box-portfolio {
-  display: inline-block;
+  display: block;
   position: relative;
   overflow: hidden;
   background: linear-gradient(to right, #c2a47e, #c2a47e);
@@ -1010,7 +1010,7 @@ a[href*='tel'], a[href*='mailto'] {
 }
 
 .box-portfolio img {
-  opacity: 0.1;
+  opacity: 1;
 }
 
 .box-portfolio .portfolio-subtitle {
