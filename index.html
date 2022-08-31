@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
 <script src="js/3ts2ksMwXvKRuG480KNifJ2_JNM.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script src="js/email_send.js"></script>
+<script>
+  emailjs.init("kumarbarani61@gmail.com");
+</script>
     <!-- Stylesheets-->
 <link rel="stylesheet" type="text/css" href="css/css?family=Abril+Fatface%7CLato:300i,400,900%7CMontserrat:100,300,400,500,600,700,900">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -203,7 +208,7 @@
                   <ul class="list-marked">
                     <li>Color Consultation</li>
                     <li>Home Preparation</li>
-                    <li>Wallpaper Removal</li>
+                    <li>Wallpaper Installation</li>
                     <li>Interior Painting</li>
                   </ul>
                 </div>
@@ -528,11 +533,11 @@
           <h2>Get in Touch with Us</h2>
           <p>Let us help you decide which of our solutions is the best pick <br class="d-none d-md-inline-block">for you. Contact us now to know more!</p>
           <!-- RD Mailform-->
-          <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+          <form class="rd-form rd-mailform" id="contactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
             <div class="row row-20">
               <div class="col-md-4">
                 <div class="form-wrap form-wrap-icon input--nao">
-                  <input class="form-input input__field--nao" id="contact-name" type="text" name="name" data-constraints="@Required">
+                  <input class="form-input input__field--nao" id="contact-name" type="text" name="contact-name" data-constraints="@Required">
                   <label class="form-label mdi mdi-account-outline input__label--nao" for="contact-name">Your Name</label>
                   <svg class="graphic graphic--nao" width="300%" height="100%" viewbox="0 0 1200 60" preserveaspectratio="none">
                     <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -541,7 +546,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-wrap form-wrap-icon input--nao">
-                  <input class="form-input input__field--nao" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+                  <input class="form-input input__field--nao" id="contact-email" type="email" name="contact-email" data-constraints="@Email @Required">
                   <label class="form-label input__label--nao mdi mdi-email-outline" for="contact-email">E-mail</label>
                   <svg class="graphic graphic--nao" width="300%" height="100%" viewbox="0 0 1200 60" preserveaspectratio="none">
                     <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -550,7 +555,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-wrap form-wrap-icon input--nao">
-                  <input class="form-input input__field--nao" id="contact-phone" type="text" name="phone" data-constraints="@Numeric">
+                  <input class="form-input input__field--nao" id="contact-phone" type="text" name="contact-phone" data-constraints="@Numeric">
                   <label class="form-label input__label--nao mdi mdi-tablet-android" for="contact-phone">Phone</label>
                   <svg class="graphic graphic--nao" width="300%" height="100%" viewbox="0 0 1200 60" preserveaspectratio="none">
                     <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -559,7 +564,7 @@
               </div>
               <div class="col-12">
                 <div class="form-wrap form-wrap-icon input--nao">
-                  <textarea class="form-input input__field--nao" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                  <textarea class="form-input input__field--nao" id="contact-message" name="contact-message" data-constraints="@Required"></textarea>
                   <label class="form-label input__label--nao mdi mdi-message-text-outline" for="contact-message">Your Message</label>
                   <svg class="graphic graphic--nao" width="300%" height="50%" viewbox="0 0 1200 60" preserveaspectratio="none">
                     <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -567,9 +572,28 @@
                 </div>
               </div>
               <div class="col-12 text-center form-button">
-                <button class="button button-primary button-nina" type="submit">Send Message</button>
+                <button class="button button-primary button-nina" type="submit" onclick="onClickA()">Send Message</button>
               </div>
             </div>
+            <script>
+              function onClickA(){
+                var formData = new FormData(document.getElementById('contactForm'));
+                    formData.append('service_id', 'service_rpo7ube');
+                    formData.append('template_id', 'template_u8qzjl5');
+                    formData.append('user_id', 'q-hIbPmpxMde_E2DF');
+                
+                    $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
+                        type: 'POST',
+                        data: formData,
+                        contentType: false, // auto-detection
+                        processData: false // no need to parse formData to string
+                    }).done(function() {
+                        alert('Your contact details were sent Successfully, We will get in touch with you as soon as possible.');
+                    }).fail(function(error) {
+                        alert('Oops... ' + JSON.stringify(error));
+                    });
+              }
+            </script>
           </form>
         </div>
       </section>
@@ -623,11 +647,11 @@
             <div class="modal-dialog__content">
               <h4>Make an Appointment</h4>
               <!-- RD Mailform-->
-              <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+              <form class="rd-form rd-mailform" id="modalForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
                 <div class="row row-20">
                   <div class="col-12">
                     <div class="form-wrap form-wrap-icon input--nao">
-                      <input class="form-input input__field--nao" id="contact-name-modal" type="text" name="name" data-constraints="@Required">
+                      <input class="form-input input__field--nao" id="contact-name-modal" type="text" name="contact-name" data-constraints="@Required">
                       <label class="form-label mdi mdi-account-outline input__label--nao" for="contact-name-modal">Your Name</label>
                       <svg class="graphic graphic--nao" width="300%" height="100%" viewbox="0 0 1200 60" preserveaspectratio="none">
                         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -636,7 +660,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-wrap form-wrap-icon input--nao">
-                      <input class="form-input input__field--nao" id="contact-email-modal" type="email" name="email" data-constraints="@Email @Required">
+                      <input class="form-input input__field--nao" id="contact-email-modal" type="email" name="contact-email" data-constraints="@Email @Required">
                       <label class="form-label input__label--nao mdi mdi-email-outline" for="contact-email-modal">E-mail</label>
                       <svg class="graphic graphic--nao" width="300%" height="100%" viewbox="0 0 1200 60" preserveaspectratio="none">
                         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -645,7 +669,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-wrap form-wrap-icon input--nao">
-                      <input class="form-input input__field--nao" id="contact-phone-modal" type="text" name="phone" data-constraints="@Numeric">
+                      <input class="form-input input__field--nao" id="contact-phone-modal" type="text" name="contact-phone" data-constraints="@Numeric">
                       <label class="form-label input__label--nao mdi mdi-tablet-android" for="contact-phone-modal">Phone</label>
                       <svg class="graphic graphic--nao" width="300%" height="100%" viewbox="0 0 1200 60" preserveaspectratio="none">
                         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -654,7 +678,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-wrap form-wrap-icon input--nao">
-                      <textarea class="form-input input__field--nao" id="contact-message-modal" name="message" data-constraints="@Required"></textarea>
+                      <textarea class="form-input input__field--nao" id="contact-message-modal" name="contact-message" data-constraints="@Required"></textarea>
                       <label class="form-label input__label--nao mdi mdi-message-text-outline" for="contact-message-modal">Your Message</label>
                       <svg class="graphic graphic--nao" width="300%" height="50%" viewbox="0 0 1200 60" preserveaspectratio="none">
                         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
@@ -662,9 +686,28 @@
                     </div>
                   </div>
                   <div class="col-12 text-center form-button">
-                    <button class="button button-primary button-nina" type="submit">Send Message</button>
+                    <button class="button button-primary button-nina" type="submit" onclick="onClickB()">Send Message</button>
                   </div>
                 </div>
+                <script>
+                  function onClickB(){
+                    var formData = new FormData(document.getElementById('modalForm'));
+                        formData.append('service_id', 'service_rpo7ube');
+                        formData.append('template_id', 'template_u8qzjl5');
+                        formData.append('user_id', 'q-hIbPmpxMde_E2DF');
+                    
+                        $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
+                            type: 'POST',
+                            data: formData,
+                            contentType: false, // auto-detection
+                            processData: false // no need to parse formData to string
+                        }).done(function() {
+                            alert('Your contact details were sent Successfully, We will get in touch with you as soon as possible.');
+                        }).fail(function(error) {
+                            alert('Oops... ' + JSON.stringify(error));
+                        });
+                  }
+                </script>
               </form>
             </div>
           </div>
